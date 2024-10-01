@@ -1,0 +1,13 @@
+button:disabled {
+   
+    opacity: 0.65; /* Smanjena vidljivost */
+    cursor: not-allowed!important;
+  }
+  .messageNottification{
+    width: 100%;
+    text-align: center
+  }
+  .color-red{
+    color:red !important;
+    
+  }

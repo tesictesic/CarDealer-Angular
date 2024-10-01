@@ -1,0 +1,163 @@
+<div class="page-heading header-text">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1>Cars</h1>
+          <span>Explore our wide selection of cars suited to your needs.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="services">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                <div class="form-group">
+                    <label>Brands:</label>
+         
+                     <select class="form-control" #brand (change)="getModels(brand.value)" [(ngModel)]="obj_filters.brandId">
+                          <option value="0">Choose</option>
+                          <option *ngFor="let option of brands"  [value]="option.id">
+                            {{ option.name }}
+                          </option>
+                          
+                     </select>
+                </div>
+            </div>
+    
+            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                <div class="form-group">
+                    <label>Model:</label>
+         
+                     <select class="form-control"  #model [(ngModel)]="obj_filters.modelId">
+                      <option value="0">Choose</option>
+                      <option *ngFor="let option of models"  [value]="option.id">
+                        {{ option.name }}
+                      </option>
+                     </select>
+                </div>
+            </div>
+    
+            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                <div class="form-group">
+                    <label>Fuel:</label>
+         
+                     <select class="form-control" [(ngModel)]="obj_filters.fuelId">
+                      <option value="0">Choose</option>
+                      <option *ngFor="let option of fuel"  [value]="option.id">
+                        {{ option.name }}
+                      </option>
+                     </select>
+                </div>
+            </div>
+    
+            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                <div class="form-group">
+                    <label>Type of vehicle:</label>
+         
+                     <select class="form-control" [(ngModel)]="obj_filters.body_typeId">
+                      <option value="0">Choose</option>
+                      <option *ngFor="let option of typeOfCars"  [value]="option.id">
+                        {{ option.name }}
+                      </option>
+                     </select>
+                </div>
+            </div>
+    
+            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                <div class="form-group">
+                    <label>Sorting price:</label>
+         
+                     <select class="form-control" [(ngModel)]="obj_filters.sorting">
+                         <option value="0">Choose</option>
+                          <option value="asc">Price ascc</option>
+                          <option value="desc">Price desc</option>
+                     </select>
+                </div>
+            </div>
+    
+            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                <div class="form-group">
+                    <label>Price From:</label>
+                     <input type="number" class="form-control" min="0" name="price_from" [(ngModel)]="obj_filters.price_from"/>
+                </div>
+            </div>
+    
+            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                <div class="form-group">
+                    <label>Price to:</label>
+                    <input type="number" class="form-control" min="0" name="price_to" [(ngModel)]="obj_filters.price_to"/>
+                </div>
+            </div>
+    
+          
+        </div>
+        
+        <div class="col-sm-4 offset-sm-4">
+          <div class="main-button text-center">
+              <a (click)="applyFilters()" class="filled-button">Search</a>
+          </div>
+        </div>
+        <br>
+        <br>
+
+      <div class="row" *ngIf="cars.length>0; else emptyCar">
+        <div class="col-md-4"  *ngFor="let item of cars; index as i; track: $index">
+          <div class="service-item">
+            <img [src]='"http://localhost:8000/assets/images/cars/"+item.image'  [alt]='item.image'>
+            <div class="down-content">
+              <h4>{{item.brand}} {{item.model}} {{item.label}}</h4>
+              <div style="margin-bottom:10px;">
+                <span>
+                    <del><sup></sup>{{item.oldPrice!=null?"$"+item.oldPrice:''}} </del> &nbsp; ${{item.price}}
+                </span>
+              </div>
+
+              <p>
+                <i class="fa fa-cogs" aria-hidden="true"></i> {{item.horsepower}} hp &nbsp;&nbsp;&nbsp;
+                <i class="fa fa-users" aria-hidden="true"></i> {{item.seats}} &nbsp;&nbsp;&nbsp;
+                <i class="fa fa-calendar-o" aria-hidden="true"></i> {{item.year}} &nbsp;&nbsp;&nbsp;
+              </p>
+              <a (click)="ViewMore(item.id)" class="filled-button">View More</a>
+            </div>
+          </div>
+
+          <br>
+        </div>
+        
+       
+      </div>
+      <ng-template #emptyCar>
+        <h1>No cars available.</h1>
+      </ng-template>
+
+      <br>
+      <br>
+
+      <nav>
+        <ul class="pagination pagination-lg justify-content-center">
+          <li class="page-item">
+            <a class="page-link" (click)="movePrevious()" aria-label="Previous" #previous>
+              <span aria-hidden="true">«</span>
+              <span class="sr-only">Previous</span>
+            </a>
+
+            <li class="page-item" *ngFor="let item of paginationArr">
+              <a class="page-link" [ngClass]="{'page-active':item==currentPage}" (click)="changePage(item)">{{item}}</a>
+            </li>
+             <li class="page-item">
+            <a class="page-link" (click)="moveNext()" aria-label="Next" #next>
+              <span aria-hidden="true">»</span>
+              <span class="sr-only">Next</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <br>
+      <br>
+      <br>
+      <br>
+    </div>
+  </div>

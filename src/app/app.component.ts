@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,9 @@ import { Component } from '@angular/core';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'angularSite';
+  constructor(private router: Router) {}
+  
+  shouldShowHeaderFooter(){
+    return this.router.url !== '/login' && this.router.url!=='/register' && !this.router.url.includes("/admin/");
+  }
 }

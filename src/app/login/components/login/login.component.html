@@ -1,0 +1,35 @@
+<div id="back">
+  <a routerLink="/home"><i class="fa fa-arrow-left back-arrow"  aria-hidden="true"></i></a>
+</div>
+<div class="limiter">
+  <div class="container-login100" style="background-image: url('images/bg-01.jpg');">
+    
+    <div class="wrap-login100 p-t-30 p-b-50">
+      <span class="login100-form-title p-b-41">
+        
+        Account Login
+        
+      </span>
+      <form [formGroup]="form" class="login100-form validate-form p-b-33 p-t-5">
+
+        <div class="wrap-input100 validate-input" data-validate = "Enter username">
+          <i class="fa fa-user login-icons" aria-hidden="true"></i>
+          <input class="input100" type="text" name="username" placeholder="User name" formControlName="email">
+        </div>
+
+        <div class="wrap-input100 validate-input" data-validate="Enter password">
+          <i class="fa fa-lock login-icons" aria-hidden="true"></i>
+          <input class="input100" type="password" name="pass" placeholder="Password" formControlName="password">
+        </div>
+        <div class="container-login100-form-btn m-t-32">
+          <button class="login100-form-btn" (click)="login()" [disabled]="form.invalid">
+            Login
+          </button>
+          <p style="padding-top: 15px;">If you dont have account please <a class="registerLink"routerLink="/register" >Register</a></p>
+        </div>
+        <p  *ngIf="errorMsg!=null" class="display-login-error">{{errorMsg}}</p>
+      </form>
+     
+    </div>
+  </div>
+</div>

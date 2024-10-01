@@ -1,0 +1,7 @@
+.service-item a{
+    cursor:pointer;
+    color:#fff
+}
+a.filled-button:hover{
+    color:#a4c639;
+}

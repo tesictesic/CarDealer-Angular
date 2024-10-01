@@ -1,0 +1,458 @@
+/* From Uiverse.io by kennyotsu-monochromia */ 
+.Btn {
+    --black: #000000;
+    --ch-black: #141414;
+    --eer-black: #1b1b1b;
+    --night-rider: #2e2e2e;
+    --white: #ffffff;
+    --af-white: #f3f3f3;
+    --ch-white: #e1e1e1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 45px;
+    height: 45px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition-duration: .3s;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
+    background-color: var(--night-rider);
+  }
+  
+  /* plus sign */
+  .sign {
+    width: 100%;
+    transition-duration: .3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .sign svg {
+    width: 17px;
+  }
+  
+  .sign svg path {
+    fill: var(--af-white);
+  }
+  /* text */
+  .text {
+    position: absolute;
+    right: 0%;
+    width: 0%;
+    opacity: 0;
+    color: var(--af-white);
+    font-size: 1.2em;
+    font-weight: 600;
+    transition-duration: .3s;
+  }
+  /* hover effect on button width */
+  .Btn:hover {
+    width: 125px;
+    border-radius: 5px;
+    transition-duration: .3s;
+  }
+  
+  .Btn:hover .sign {
+    width: 30%;
+    transition-duration: .3s;
+    padding-left: 20px;
+  }
+  /* hover effect button's text */
+  .Btn:hover .text {
+    opacity: 1;
+    width: 70%;
+    transition-duration: .3s;
+    padding-right: 10px;
+  }
+  /* button click effect*/
+  .Btn:active {
+    transform: translate(2px ,2px);
+  }
+
+
+  /* From Uiverse.io by G4b413l */ 
+.group {
+  position: relative;
+ }
+ 
+ .input {
+  font-size: 16px;
+  padding: 10px 10px 10px 5px;
+  display: block;
+  width: 200px;
+  border: none;
+  border-bottom: 1px solid #515151;
+  background: transparent;
+ }
+ 
+ .input:focus {
+  outline: none;
+ }
+ 
+ label {
+  color: #999;
+  font-size: 18px;
+  font-weight: normal;
+  position: absolute;
+  pointer-events: none;
+  left: 5px;
+  top: 10px;
+  transition: 0.2s ease all;
+  -moz-transition: 0.2s ease all;
+  -webkit-transition: 0.2s ease all;
+ }
+ 
+ .input:focus ~ label, .input:valid ~ label {
+  top: -20px;
+  font-size: 14px;
+  color: #5264AE;
+ }
+ 
+ .bar {
+  position: relative;
+  display: block;
+  width: 200px;
+ }
+ 
+ .bar:before, .bar:after {
+  content: '';
+  height: 2px;
+  width: 0;
+  bottom: 1px;
+  position: absolute;
+  background: #5264AE;
+  transition: 0.2s ease all;
+  -moz-transition: 0.2s ease all;
+  -webkit-transition: 0.2s ease all;
+ }
+ 
+ .bar:before {
+  left: 50%;
+ }
+ 
+ .bar:after {
+  right: 50%;
+ }
+ 
+ .input:focus ~ .bar:before, .input:focus ~ .bar:after {
+  width: 50%;
+ }
+ 
+ .highlight {
+  position: absolute;
+  height: 60%;
+  width: 100px;
+  top: 25%;
+  left: 0;
+  pointer-events: none;
+  opacity: 0.5;
+ }
+ 
+ .input:focus ~ .highlight {
+  animation: inputHighlighter 0.3s ease;
+ }
+ 
+ @keyframes inputHighlighter {
+  from {
+   background: #5264AE;
+  }
+ 
+  to {
+   width: 0;
+   background: transparent;
+  }
+ }
+
+ /* From Uiverse.io by adamgiebl */ 
+.cssbuttons-io-button {
+  display: flex;
+  align-items: center;
+  font-family: inherit;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 16px;
+  padding: 0.7em 1.4em 0.7em 1.1em;
+  color: white;
+  background: #ad5389;
+  background: linear-gradient(
+    0deg,
+    rgba(20, 167, 62, 1) 0%,
+    rgba(102, 247, 113, 1) 100%
+  );
+  border: none;
+  box-shadow: 0 0.7em 1.5em -0.5em #14a73e98;
+  letter-spacing: 0.05em;
+  border-radius: 20em;
+}
+
+.cssbuttons-io-button svg {
+  margin-right: 6px;
+}
+
+.cssbuttons-io-button:hover {
+  box-shadow: 0 0.5em 1.5em -0.5em #14a73e98;
+}
+
+.cssbuttons-io-button:active {
+  box-shadow: 0 0.3em 1em -0.5em #14a73e98;
+}
+.select-list {
+  font-size: 16px;
+  padding: 10px 10px 10px 5px;
+  display: block;
+  width: 200px;
+  color: #999;
+  font-size: 18px;
+    font-weight: normal;
+  border: none;
+  border-bottom: 1px solid #515151;
+  background: transparent;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  outline: none;
+  cursor: pointer;
+  position: relative;
+  background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgdmlld0JveD0iMCAwIDE2IDE2Ij4KICAgIDxwYXRoIGQ9Ik04IDEyLjI1bC02LTYgMS40MS0xLjQxTCA4IDkuNDJsNC41OS00LjU4TDE0IDYuMjV6IiBmaWxsPSIjMDAwIi8+Cjwvc3ZnPg==');
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 12px;
+}
+.select-list:focus {
+  outline: none;
+}
+
+.select-list:focus ~ .bar:before, 
+.select-list:focus ~ .bar:after {
+  width: 50%;
+}
+
+.select-list:focus ~ label, 
+.select-list:valid ~ label {
+  top: -20px;
+  font-size: 14px;
+  color: #5264AE;
+}
+
+.select-list:focus ~ .highlight {
+  animation: inputHighlighter 0.3s ease;
+}
+
+.bar {
+  position: relative;
+  display: block;
+  width: 100%;
+}
+
+.bar:before, .bar:after {
+  content: '';
+  height: 2px;
+  width: 0;
+  bottom: 0;
+  position: absolute;
+  background: #5264AE;
+  transition: 0.3s ease all;
+}
+
+.bar:before {
+  left: 50%;
+}
+
+.bar:after {
+  right: 50%;
+}
+
+.highlight {
+  position: absolute;
+  height: 60%;
+  width: 100px;
+  top: 25%;
+  left: 0;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+@keyframes inputHighlighter {
+  from { background: #5264AE; }
+  to { width: 0; background: transparent; }
+}
+/* From Uiverse.io by andrew-demchenk0 */ 
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 9px 12px;
+  gap: 8px;
+  height: 40px;
+  width: 200px;
+  border: none;
+  background: #FF2849;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.lable {
+  line-height: 22px;
+  font-size: 17px;
+  color: #fff;
+  font-family: sans-serif;
+  letter-spacing: 1px;
+}
+
+.button:hover {
+  background: #e52441;
+}
+
+.button:hover .svg-icon {
+  animation: flickering 2s linear infinite;
+}
+
+@keyframes flickering {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  52% {
+    opacity: 1;
+  }
+
+  54% {
+    opacity: 0;
+  }
+
+  56% {
+    opacity: 1;
+  }
+
+  90% {
+    opacity: 1;
+  }
+
+  92% {
+    opacity: 0;
+  }
+
+  94% {
+    opacity: 1;
+  }
+
+  96% {
+    opacity: 0;
+  }
+
+  98% {
+    opacity: 1;
+  }
+
+  99% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+.color-red{
+  color:red;
+}
+.textarea-container {
+  position: relative;
+  margin-top: 40px;
+}
+
+.input-textarea {
+  font-size: 16px;
+  padding: 10px 10px 10px 5px;
+  display: block;
+  width: 300px;
+  height: 100px;
+  border: none;
+  border-bottom: 1px solid #515151;
+  background: transparent;
+  resize: none; /* Da sprečimo promenu veličine */
+}
+
+/* Fokus stanje - uklanjanje outline-a */
+.input-textarea:focus {
+  outline: none;
+}
+
+/* Animacija za bar ispod textaree */
+.textarea-bar {
+  position: relative;
+  display: block;
+  width: 300px;
+}
+
+.textarea-bar:before, .textarea-bar:after {
+  content: '';
+  height: 2px;
+  width: 0;
+  bottom: 0;
+  position: absolute;
+  background: #5264AE;
+  transition: 0.3s ease all;
+}
+
+.textarea-bar:before {
+  left: 50%;
+}
+
+.textarea-bar:after {
+  right: 50%;
+}
+
+.input-textarea:focus ~ .textarea-bar:before,
+.input-textarea:focus ~ .textarea-bar:after {
+  width: 50%;
+}
+
+/* Stil za labelu */
+.textarea-label {
+  color: #999;
+  font-size: 16px;
+  font-weight: normal;
+  position: absolute;
+  pointer-events: none;
+  left: 5px;
+  top: 10px;
+  transition: 0.3s ease all;
+}
+
+/* Pomeranje labele kada je textarea fokusirana ili kada je popunjena */
+.input-textarea:focus ~ .textarea-label,
+.input-textarea:valid ~ .textarea-label {
+  top: -20px;
+  font-size: 14px;
+  color: #5264AE;
+}
+
+/* Efekat za highlight kada se klikne na textarea */
+.input-textarea:focus ~ .textarea-bar {
+  animation: textareaHighlighter 0.3s ease;
+}
+
+@keyframes textareaHighlighter {
+  from { background-color: #5264AE; }
+  to { background-color: transparent; }
+}
+#btn-sent:disabled{
+  background-color: #ccc; /* Svetlosiva pozadina */
+  color: #666; /* Tamnija boja za tekst */
+  cursor: not-allowed; /* Promena kursora na 'zabranjeno' */
+  border: 1px solid #999; /* Blago tamniji okvir */
+  opacity: 0.65; /* Smanjena vidljivost */
+}
+#frm{
+  display: flex;
+    flex-direction: column;
+    align-items: center;
+}

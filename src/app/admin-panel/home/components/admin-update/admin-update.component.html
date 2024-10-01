@@ -1,0 +1,407 @@
+
+<div [ngClass]="{'d-none':!isTrigerred}">
+   
+   
+    <button class="Btn" (click)="getBack()">
+      
+      <div class="sign"><svg viewBox="0 0 512 512"><path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"></path></svg></div>
+      
+      <div class="text">Back</div>
+    </button>
+    <br/>
+    <h3>Update: {{table}}</h3>
+    
+    
+
+    <div id="form_insert" [ngSwitch]="table">
+        
+        <form [formGroup]="form" id="frm">
+            <ng-container *ngSwitchCase="'vehicles'">
+                <div class="group">
+                    <input type="text" class="input" formControlName="label"
+                    [ngStyle]="{
+                        'border': form.get('label')?.invalid && (form.get('label')?.touched || form.get('label')?.dirty) ? '2px solid red' : '1px solid #ced4da'
+                      }"
+                    />
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>Label</label>
+                  </div>
+                  <div *ngIf="form.get('label')?.hasError('minlength')">
+                    <p class="color-red">Label min length is 3</p>
+                </div>
+                  <br/>
+                  <div class="group">
+                    <input  type="number" class="input" min="1" formControlName="horsepower"
+                    [ngStyle]="{
+                        'border': form.get('horsepower')?.invalid && (form.get('horsepower')?.touched || form.get('horsepower')?.dirty) ? '2px solid red' : '1px solid #ced4da'
+                      }"
+                    >
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>Horsepower</label>
+                  </div>
+                  <div *ngIf="form.get('horsepower')?.hasError('minlength')">
+                    <p class="color-red">Horsepower min length is 1</p>
+                </div>
+                  <br/>
+                  <div class="group">
+                    <input type="number" min="1" class="input" formControlName="year"
+                    [ngStyle]="{
+                        'border': form.get('year')?.invalid && (form.get('year')?.touched || form.get('year')?.dirty) ? '2px solid red' : '1px solid #ced4da'
+                      }"
+                    >
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>year</label>
+                  </div>
+                  <div *ngIf="form.get('year')?.hasError('minlength')">
+                    <p class="color-red">Year min length is 4</p>
+                </div>
+                <div *ngIf="form.get('year')?.hasError('maxlength')">
+                    <p class="color-red">Year max length is 4</p>
+                </div>
+                <br/>
+                <div class="group">
+                    <input  type="number" class="input" min="1" formControlName="seats"
+                    [ngStyle]="{
+                        'border': form.get('seats')?.invalid && (form.get('seats')?.touched || form.get('seats')?.dirty) ? '2px solid red' : '1px solid #ced4da'
+                      }"
+                    >
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>Seats</label>
+                  </div>
+                  <br/>
+                  <div class="group">
+                    <input type="number" min="1" class="input" formControlName="price"
+                    [ngStyle]="{
+                        'border': form.get('price')?.invalid && (form.get('price')?.touched || form.get('price')?.dirty) ? '2px solid red' : '1px solid #ced4da'
+                      }"
+                    >
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>Price</label>
+                  </div>
+                  <br/>
+                  <div class="group">
+                    <div class="textarea-container">
+                        <textarea class="input-textarea" formControlName="description"
+                        [ngStyle]="{
+                            'border': form.get('description')?.invalid && (form.get('description')?.touched || form.get('description')?.dirty) ? '2px solid red' : '1px solid #ced4da'
+                          }"
+                        ></textarea>
+                        <label for="textarea" class="textarea-label">Description</label>
+                        <span class="textarea-bar"></span>
+                      </div>
+                  </div>
+                  <div *ngIf="form.get('description')?.hasError('minlength')">
+                    <p class="color-red">Minimum length for description is 10</p>
+                </div>
+                <div *ngIf="form.get('description')?.hasError('maxlength')">
+                    <p class="color-red">Max length for description is 500</p>
+                </div>
+                  <br/>
+                  <div class="group">
+                        <a class="button" (click)="triggerFileInput()">
+                          <input #fileInput  type="file" formControlName="image" (change)="uploadPicture($event)" style="display: none;" />
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" height="24" fill="none" class="svg-icon"><g stroke-width="2" stroke-linecap="round" stroke="#fff" fill-rule="evenodd" clip-rule="evenodd"><path d="m4 9c0-1.10457.89543-2 2-2h2l.44721-.89443c.33879-.67757 1.03131-1.10557 1.78889-1.10557h3.5278c.7576 0 1.4501.428 1.7889 1.10557l.4472.89443h2c1.1046 0 2 .89543 2 2v8c0 1.1046-.8954 2-2 2h-12c-1.10457 0-2-.8954-2-2z"></path><path d="m15 13c0 1.6569-1.3431 3-3 3s-3-1.3431-3-3 1.3431-3 3-3 3 1.3431 3 3z"></path></g></svg>
+                          <span class="lable">Take a Photo</span>
+                        </a>  
+                  </div>
+                  <div *ngIf="form.get('image')?.hasError('pattern')">
+                    <p class="color-red">Picture  is not in good format</p>
+                </div>
+                  <br/>
+                  <div class="group">
+                    <div class="input-container">
+                        <select class="select-list" #brand  formControlName="brand_id"
+                        [ngStyle]="{
+                            'border': form.get('brand_id')?.invalid && (form.get('brand_id')?.touched || form.get('brand_id')?.dirty) ? '2px solid red' : '1px solid #ced4da'
+                          }"
+                        >
+                          <option value="" disabled selected>Choose an brand</option>
+                          <ng-container *ngFor="let item of brand_arr">
+                          <option [value]="item.id">{{item.name}}</option>
+                        </ng-container>
+                         
+                        </select>
+                      
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                      </div>
+                      
+                  </div>
+                
+                  <br/>
+                  <div class="group" >
+                    <div class="input-container" #model>
+                        <select class="select-list"  formControlName="model_id"
+                        [ngStyle]="{
+                            'border': form.get('model_id')?.invalid && (form.get('model_id')?.touched || form.get('model_id')?.dirty) ? '2px solid red' : '1px solid #ced4da'
+                          }"
+                        >
+                          <option value="" disabled selected>Choose an model</option>
+                          <ng-container *ngFor="let item of model_arr">
+                            <option [value]="item.id">{{item.name}}</option>
+                          </ng-container>
+                        </select>
+                      
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                      </div>
+                      
+                  </div>
+                  <br/>
+                  <div class="group">
+                    <div class="input-container">
+                        <select class="select-list" formControlName="color_id"
+                        [ngStyle]="{
+                            'border': form.get('color_id')?.invalid && (form.get('color_id')?.touched || form.get('color_id')?.dirty) ? '2px solid red' : '1px solid #ced4da'
+                          }"
+                        >
+                          <option value="" disabled selected>Choose an color</option>
+                          <ng-container *ngFor="let item of color_arr">
+                            <option [value]="item.id">{{item.color_name}}</option>
+                          </ng-container>
+                        </select>
+                      
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                      </div>
+                      
+                  </div>
+              
+                  <br/>
+                  <div class="group">
+                    <div class="input-container">
+                        <select class="select-list" formControlName="car_body_id"
+                        [ngStyle]="{
+                            'border': form.get('car_body_id')?.invalid && (form.get('car_body_id')?.touched || form.get('car_body_id')?.dirty) ? '2px solid red' : '1px solid #ced4da'
+                          }"
+                        >
+                          <option value="" disabled selected>Choose an car body</option>
+                          <ng-container *ngFor="let item of car_type_arr">
+                            <option [value]="item.id">{{item.name}}</option>
+                          </ng-container>
+                        </select>
+                      
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                      </div>
+                      
+                  </div>
+                  <br/>
+                  <div class="group">
+                    <div class="input-container">
+                        <select class="select-list" formControlName="fuel_id"
+                        [ngStyle]="{
+                            'border': form.get('fuel_id')?.invalid && (form.get('fuel_id')?.touched || form.get('fuel_id')?.dirty) ? '2px solid red' : '1px solid #ced4da'
+                          }"
+                        >
+                          <option value="" disabled selected>Choose an fuel</option>
+                          <ng-container *ngFor="let item of fuel_arr">
+                            <option [value]="item.id">{{item.name}}</option>
+                          </ng-container>
+                        </select>
+                      
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                      </div>
+                      
+                  </div>
+                  <br/>
+                  
+            </ng-container>
+            <ng-container *ngSwitchCase="'vehiclePrice'">
+                <div class="group">
+                    <div class="input-container">
+                        <select class="select-list" formControlName="vehicle_id"
+                        [ngStyle]="{
+                            'border': form.get('vehicle_id')?.invalid && (form.get('vehicle_id')?.touched || form.get('vehicle_id')?.dirty) ? '2px solid red' : '1px solid #ced4da'
+                          }"
+                        >
+                          <option value="" disabled selected>Choose an vehicle</option>
+                          <ng-container *ngFor="let item of vehicle_price_arr">
+                          <option [value]="item.id">{{item.name}}</option>
+                        </ng-container>
+                         
+                        </select>
+                      
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                      </div>
+                      
+                  </div>
+                  <br/>
+                  <br/>
+                <div class="group">
+                    <input  type="number" class="input" formControlName="price"
+                    [ngStyle]="{
+                        'border': form.get('price')?.invalid && (form.get('price')?.touched || form.get('price')?.dirty) ? '2px solid red' : '1px solid #ced4da'
+                      }"
+                    >
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>Price</label>
+                  </div>
+                  <br/>
+                  <div class="group">
+                    <input type="date" class="input" formControlName="date_of"
+                    [ngStyle]="{
+                        'border': form.get('date_of')?.invalid && (form.get('date_of')?.touched || form.get('date_of')?.dirty) ? '2px solid red' : '1px solid #ced4da'
+                      }"
+                    >
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>Date of</label>
+                  </div>
+                  <br/>
+                  <div class="group">
+                    <input type="date" class="input" formControlName="date_to"
+                    [ngStyle]="{
+                        'border': form.get('date_to')?.invalid && (form.get('date_to')?.touched || form.get('date_to')?.dirty) ? '2px solid red' : '1px solid #ced4da'
+                      }"
+                    >
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>Date to</label>
+                  </div>
+            </ng-container>
+            <ng-container *ngSwitchCase="'users'">
+                <div class="group">
+                    <input  type="text" class="input" formControlName="first_name"
+                    [ngStyle]="{
+                        'border': form.get('first_name')?.invalid && (form.get('first_name')?.touched || form.get('first_name')?.dirty) ? '2px solid red' : '1px solid #ced4da'
+                      }"
+                    >
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>First name</label>
+                  </div>
+                  <div *ngIf="form.get('first_name')?.hasError('pattern')">
+                    <p class="color-red">First name is not in good format</p>
+                </div>
+                  <br/>
+                  <div class="group">
+                    <input  type="text" class="input" formControlName="last_name"
+                    [ngStyle]="{
+                        'border': form.get('last_name')?.invalid && (form.get('last_name')?.touched || form.get('last_name')?.dirty) ? '2px solid red' : '1px solid #ced4da'
+                      }"
+                    >
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>Last name</label>
+                  </div>
+                  <div *ngIf="form.get('last_name')?.hasError('pattern')">
+                    <p class="color-red">Last name is not in good format</p>
+                </div>
+                  <br/>
+                  <div class="group">
+                    <input type="email" class="input" formControlName="email"
+                    [ngStyle]="{
+                        'border': form.get('email')?.invalid && (form.get('email')?.touched || form.get('email')?.dirty) ? '2px solid red' : '1px solid #ced4da'
+                      }"
+                    >
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>Email</label>
+                  </div>
+                  <div *ngIf="form.get('email')?.hasError('email')">
+                    <p class="color-red">Email  is not in good format</p>
+                </div>
+               
+                  <br/>
+                  <div class="group">
+                    <a class="button" (click)="triggerFileInput()">
+                      <input #fileInput  type="file"  style="display: none;"  (change)="uploadPicture($event)" formControlName="picture" />
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" height="24" fill="none" class="svg-icon"><g stroke-width="2" stroke-linecap="round" stroke="#fff" fill-rule="evenodd" clip-rule="evenodd"><path d="m4 9c0-1.10457.89543-2 2-2h2l.44721-.89443c.33879-.67757 1.03131-1.10557 1.78889-1.10557h3.5278c.7576 0 1.4501.428 1.7889 1.10557l.4472.89443h2c1.1046 0 2 .89543 2 2v8c0 1.1046-.8954 2-2 2h-12c-1.10457 0-2-.8954-2-2z"></path><path d="m15 13c0 1.6569-1.3431 3-3 3s-3-1.3431-3-3 1.3431-3 3-3 3 1.3431 3 3z"></path></g></svg>
+                      <span class="lable">Take a Photo</span>
+                    </a>  
+              </div>
+              <div *ngIf="form.get('picture')?.hasError('pattern')">
+                <p class="color-red">Picture  is not in good format</p>
+            </div>
+              <br/>
+              <div class="group">
+                <div class="input-container">
+                    <select class="select-list" formControlName="role_id" 
+                    [ngStyle]="{
+                        'border': form.get('role_id')?.invalid && (form.get('role_id')?.touched || form.get('role_id')?.dirty) ? '2px solid red' : '1px solid #ced4da'
+                      }"
+                    >
+                      <option value="" disabled selected>Choose an role</option>
+                      <ng-container  *ngFor="let item of roles_arr">
+                        <option [value]="item.id">{{item.name}}</option>
+                      </ng-container>
+                    </select>
+                  
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                  </div>
+                  
+              </div>
+              <br/>
+            </ng-container>
+            <ng-container *ngSwitchCase="'models'">
+                <div class="group">
+                    <input  type="text" class="input" formControlName="model_name"
+                    [ngStyle]="{
+                        'border': form.get('model_name')?.invalid && (form.get('model_name')?.touched || form.get('model_name')?.dirty) ? '2px solid red' : '1px solid #ced4da'
+                      }"
+                    >
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>Model name</label>
+                  </div>
+                  <br/>
+                  <div class="group">
+                    <div class="input-container">
+                        <select class="select-list" formControlName="brand_id"
+                        [ngStyle]="{
+                            'border': form.get('brand_id')?.invalid && (form.get('brand_id')?.touched || form.get('brand_id')?.dirty) ? '2px solid red' : '1px solid #ced4da'
+                          }"
+                        >
+                          <option value="" disabled selected>Choose an brand</option>
+                          <ng-container *ngFor="let item of brand_arr">
+                          <option [value]="item.id">{{item.name}}</option>
+                        </ng-container>
+                         
+                        </select>
+                      
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                      </div>
+                      
+                  </div>
+                  <br/>
+            </ng-container>
+            <ng-container *ngSwitchDefault>
+                <div class="group">
+                    <input required="" type="text" class="input" formControlName="name"
+                    [ngStyle]="{
+                        'border': form.get('name')?.invalid && (form.get('name')?.touched || form.get('name')?.dirty) ? '2px solid red' : '1px solid #ced4da'
+                      }"
+                    >
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>Name</label>
+                  </div>
+            </ng-container>
+            <br/>
+            <div class="form-group">
+                <button type="submit" id="btn-sent" (click)="update()" [disabled]="form.invalid" class="cssbuttons-io-button">
+                  <svg class="svg" viewBox="0 0 512 512">
+                    <path d="M410.3 231l11.3-11.3-33.9-33.9-62.1-62.1L291.7 89.8l-11.3 11.3-22.6 22.6L58.6 322.9c-10.4 10.4-18 23.3-22.2 37.4L1 480.7c-2.5 8.4-.2 17.5 6.1 23.7s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L387.7 253.7 410.3 231zM160 399.4l-9.1 22.7c-4 3.1-8.5 5.4-13.3 6.9L59.4 452l23-78.1c1.4-4.9 3.8-9.4 6.9-13.3l22.7-9.1v32c0 8.8 7.2 16 16 16h32zM362.7 18.7L348.3 33.2 325.7 55.8 314.3 67.1l33.9 33.9 62.1 62.1 33.9 33.9 11.3-11.3 22.6-22.6 14.5-14.5c25-25 25-65.5 0-90.5L453.3 18.7c-25-25-65.5-25-90.5 0zm-47.4 168l-144 144c-6.2 6.2-16.4 6.2-22.6 0s-6.2-16.4 0-22.6l144-144c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6z">
+                      
+                    </path>
+                  </svg>
+                    <span>Update</span>
+                  </button>
+            </div>
+        </form>
+        <ng-template>
+            <p class="alert alert-danger">Please check your information and try again</p>
+        </ng-template>
+      </div>
+</div>

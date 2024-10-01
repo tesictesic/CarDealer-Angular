@@ -1,0 +1,82 @@
+<div id="back">
+  <a routerLink="/login"><i class="fa fa-arrow-left back-arrow"  aria-hidden="true"></i></a>
+</div>
+<div class="limiter">
+    <div class="container-login100" style="background-image: url('images/bg-01.jpg');">
+      <div class="wrap-login100 p-t-30 p-b-50">
+        <span class="login100-form-title p-b-41">
+          
+          Account Register
+          
+        </span>
+        <form [formGroup]="form" class="login100-form validate-form p-b-33 p-t-5">
+  
+          <div class="wrap-input100 validate-input" data-validate = "Enter FirstName">
+           
+            <input class="input100" type="text" name="FirstName" placeholder="First name" formControlName="firstName">
+            <div *ngIf="form.get('firstName').hasError('pattern')">
+                <p class="color-red"> Your first name is not in good format.</p>
+            </div>
+           
+          </div>
+          <div class="wrap-input100 validate-input" data-validate = "Enter LastName">
+           
+            <input class="input100" type="text" name="LastName" placeholder="Last name"  formControlName="lastName">
+            <div *ngIf="form.get('lastName').hasError('pattern')">
+                <p class="color-red"> Your last name is not in good format.</p>
+            </div>
+          </div>
+          <div class="wrap-input100 validate-input" data-validate = "Enter email">
+           
+            <input class="input100" type="email" name="email" placeholder="Email" formControlName="email">
+            <div *ngIf="form.get('email').hasError('email')">
+                <p class="color-red"> Your email is not in good format.</p>
+            </div>
+          </div>
+  
+          <div class="wrap-input100 validate-input" data-validate="Enter password">
+           
+            <input class="input100" type="password" name="password" placeholder="Password" formControlName="password">
+           <div style="text-align: left;" class="mx-4 my-2">
+            <small class="" style="text-align: center;">Your password require 8 characters at least one uppercase one lowercase one symbol</small>
+           </div>
+            <div *ngIf="form.get('password').hasError('pattern')">
+                <p class="color-red"> Your password require 8 characters at least one uppercase one lowercase one symbol.</p>
+            </div>
+          </div>
+          <div class="wrap-input100 validate-input" data-validate="Enter password">
+           
+            <!-- <input class="input100" type="file" (change)="uploadPicture($event)"  formControlName="picture"/> -->
+           <div class="mx-5">
+            <button class="button" (click)="triggerFileInput()">
+              <input #fileInput class="input100" type="file" (change)="uploadPicture($event)" style="display: none;" formControlName="picture"/>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" height="24" fill="none" class="svg-icon"><g stroke-width="2" stroke-linecap="round" stroke="#fff" fill-rule="evenodd" clip-rule="evenodd"><path d="m4 9c0-1.10457.89543-2 2-2h2l.44721-.89443c.33879-.67757 1.03131-1.10557 1.78889-1.10557h3.5278c.7576 0 1.4501.428 1.7889 1.10557l.4472.89443h2c1.1046 0 2 .89543 2 2v8c0 1.1046-.8954 2-2 2h-12c-1.10457 0-2-.8954-2-2z"></path><path d="m15 13c0 1.6569-1.3431 3-3 3s-3-1.3431-3-3 1.3431-3 3-3 3 1.3431 3 3z"></path></g></svg>
+              <span class="lable">Take a Photo</span>
+            </button>
+           </div>
+            <div *ngIf="form.get('picture').hasError('pattern')">
+                <p class="color-red"> Your picture is not in good format. Try with jpg,png,jpeg.</p>
+            </div>
+          </div>
+          <div class="wrap-input100 validate-input" data-validate = "Enter FirstName">
+            <div class="form-group d-flex mx-4">
+            &nbsp; &nbsp;    <input  type="checkbox" name="terms" id="terms"  formControlName="termsConditions"> &nbsp; &nbsp;
+            <label for="terms">I agreee with Terms and Conditions</label>
+            </div>
+            
+          </div>
+           
+        
+          <div class="container-login100-form-btn m-t-32">
+            <button class="login100-form-btn" [disabled]="form.invalid" (click)="register()">
+              Register
+            </button>
+            
+          </div>
+  
+        </form>
+        <p class="alert alert-danger" *ngIf="errorMsg!=null">{{errorMsg}}</p>
+        <p class="alert alert-success" *ngIf="successMsg!=null">{{successMsg}}</p>
+      </div>
+    </div>
+  </div>

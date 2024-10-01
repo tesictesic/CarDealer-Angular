@@ -1,0 +1,187 @@
+<div class="container bootstrap snippets bootdey my-5">
+    <div class="panel-body inf-content">
+        <div class="row">
+            <div class="col-md-4">
+                <img alt="" style="width:600px;" title="" class="img-circle img-thumbnail isTooltip" [src]='"http://localhost:8000/assets/images/users/"+user?.picture' data-original-title="Usuario"> 
+                <ul title="Ratings" class="list-inline ratings text-center">
+                    <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <strong>Information</strong><br>
+                <div class="table-responsive">
+                <table class="table table-user-information">
+                    <tbody>
+                        <tr>        
+                            <td>
+                                <strong>
+                                    <i class="fa fa-asterisk" aria-hidden="true"></i>
+                                    Identificacion                                                
+                                </strong>
+                            </td>
+                            <td class="text-primary">
+                                123456789     
+                            </td>
+                        </tr>
+                        <tr>    
+                            <td>
+                                <strong>
+                                    <i class="fa fa-user" aria-hidden="true"></i>    
+                                    First name                                               
+                                </strong>
+                            </td>
+                            <td class="text-primary">
+                                {{user?.first_name}}    
+                            </td>
+                        </tr>
+                        <tr>        
+                            <td>
+                                <strong>
+                                    <i class="fa fa-cloud" aria-hidden="true"></i>
+                                    Last name                                                
+                                </strong>
+                            </td>
+                            <td class="text-primary">
+                                {{user?.last_name}}  
+                            </td>
+                        </tr>
+    
+                        <tr>        
+                            <td>
+                                <strong>
+                                    <i class="fa fa-envelope" aria-hidden="true"></i>
+                                    Email:                                                
+                                </strong>
+                            </td>
+                            <td class="text-primary">
+                                {{user?.email}} 
+                            </td>
+                        </tr>
+    
+    
+                        <tr>        
+                            <td>
+                                <strong>
+                                    <i class="fa fa-eye" aria-hidden="true"></i>
+                                    Role                                                
+                                </strong>
+                            </td>
+                            <td class="text-primary">
+                                {{user?.roleName}}
+                            </td>
+                        </tr>
+                        <tr>        
+                            <td>
+                                <strong>
+                                    <i class="fa fa-calendar" aria-hidden="true"></i>
+
+                                    created                                                
+                                </strong>
+                            </td>
+                            <td class="text-primary">
+                                {{user?.created_at | datecustompipe}}
+                            </td>
+                        </tr>
+                        <tr>        
+                            <td>
+                                <strong>
+                                    <i class="fa fa-calendar" aria-hidden="true"></i>
+
+                                    Modified                                                
+                                </strong>
+                            </td>
+                            <td class="text-primary">
+                                {{user?.updated_at | datecustompipe}}
+                            </td>
+                        </tr>      
+                        <tr>        
+                            <td>
+                                <strong>
+                                    <i class="fa fa-car" aria-hidden="true"></i>
+
+                                    User cars                                                
+                                </strong>
+                            </td>
+                            <td class="text-primary">
+                                {{userCars}}
+                            </td>
+                        </tr>                               
+                    </tbody>
+                </table>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div id="table" class="mt-5">
+                <table class="table">
+                    <thead class="thead-light">
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Car</th>
+                        <th scope="col">Image</th>
+                        <th scope="col">Horsepower</th>
+                        <th scope="col">Fuel</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Location</th>
+                        <th scope="col">Order status</th>
+                        <th scope="col"></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let item of userOrderCars; let i=index">
+                        <td class="vertical-align">{{i+1}}</td>
+                        <td class="vertical-align">{{item.car}}</td>
+                        <td class="vertical-align">
+                            <img [src]="'http://localhost:8000/assets/images/cars/' + item.image" alt="{{ item.car }} image" width="100px;"/>
+                        </td>
+                        <td class="vertical-align">{{item.horsepower}} hp</td>
+                        <td class="vertical-align">{{item.fuel}}</td>
+                        <td class="vertical-align">{{item.price}}</td>
+                        <td class="vertical-align">{{item.location}}</td>
+                        <td class="vertical-align">{{item.statusName}}</td>
+                        <td class="vertical-align" *ngIf="item.statusId==2; else status1">
+                            <div class="spinner-border text-success" role="status">
+                                <span class="sr-only">Loading...</span>
+                              </div>
+                        </td>
+                        <ng-template #status1>
+                            <td class="vertical-align">
+                            <i class="fa fa-check" style="color:green" aria-hidden="true"></i>
+                        </td>
+                        </ng-template>
+                        
+                      </tr>
+                    </tbody>
+                  </table>
+                  <nav>
+                    <ul class="pagination pagination-lg justify-content-center">
+                      <li class="page-item">
+                        <a class="page-link" (click)="movePrevious()" aria-label="Previous" #previous>
+                          <span aria-hidden="true">«</span>
+                          <span class="sr-only">Previous</span>
+                        </a>
+            
+                        <li class="page-item" *ngFor="let item of paginationArr">
+                          <a class="page-link" [ngClass]="{'page-active':item==currentPage}" (click)="changePage(item)">{{item}}</a>
+                        </li>
+                         <li class="page-item">
+                        <a class="page-link" (click)="moveNext()" aria-label="Next" #next>
+                          <span aria-hidden="true">»</span>
+                          <span class="sr-only">Next</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </nav>
+            </div>
+              
+        </div>
+    </div>
+    </div>                               
